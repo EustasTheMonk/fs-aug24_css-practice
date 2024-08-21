@@ -1,0 +1,123 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --card-padding-block: 10px;
+  --grid-columns-amount-tablet: 2;
+  --grid-columns-amount-computer: 4;
+  --grid-column-gap: 10px;
+  --grid-column-size: 220px;
+  --rank-color: #8b0000;
+  font-family: Arial, sans-serif;
+}
+
+.people {
+  grid-template-columns: repeat(var(--grid-columns-amount-tablet), var(--grid-column-size));
+  gap: 40px var(--grid-column-gap);
+  justify-content: center;
+  margin: 30px auto;
+  transition: border-radius 1s;
+  display: grid;
+}
+
+@media (width >= 999px) {
+  .people {
+    grid-template-columns: repeat(var(--grid-columns-amount-computer), var(--grid-column-size));
+  }
+}
+
+.person {
+  max-width: var(--card-width);
+  background-color: #0000;
+  border-radius: 12px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  transition: scale 1s;
+  display: flex;
+  position: relative;
+}
+
+.person:hover {
+  background-color: #eee;
+  scale: 1.19;
+}
+
+.person:hover .person__extra {
+  transform: scale(1)translateX(-50%);
+}
+
+.person__photo-wrapper {
+  justify-content: center;
+  display: flex;
+  position: relative;
+}
+
+.person__photo {
+  width: calc(100% - var(--card-padding-block) * 2);
+  border-radius: 50%;
+  margin-bottom: 8px;
+  transition: all 1s;
+}
+
+.person:hover .person__photo {
+  border-radius: 25%;
+}
+
+.person__rank {
+  color: var(--rank-color);
+  background-color: #fff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 18;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  transform: translateY(-50%);
+}
+
+.person__name {
+  text-align: center;
+  color: #2f4f4f;
+  margin-bottom: 9px;
+  font-size: 20px;
+  display: block;
+}
+
+.person__extra {
+  justify-content: center;
+  max-width: 200px;
+  margin-bottom: 16px;
+  font-size: 18px;
+  display: flex;
+  position: relative;
+  left: 50%;
+  transform: scale(0);
+}
+
+.person__sport {
+  display: block;
+}
+
+.person__sport:after {
+  content: ", ";
+}
+
+.person__pay {
+  display: block;
+}
+
+.person__pay:before {
+  content: "$";
+}
+
+.person__pay:after {
+  content: "M";
+}
+/*# sourceMappingURL=index.b1276d39.css.map */
