@@ -1,1 +1,135 @@
+@mixin on-computer {
+  @media (min-width: 999px) {
+    @content
+  }
+}
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  --card-padding-block: 10px;
+  --grid-columns-amount-tablet: 2;
+  --grid-columns-amount-computer: 4;
+  --grid-column-gap: 10px;
+  --grid-column-size: 220px;
+  --rank-color: #8B0000;
+
+  font-family: Arial, sans-serif;
+}
+
+.people {
+  margin: 30px auto;
+  display:grid;
+  grid-template-columns: repeat(var(--grid-columns-amount-tablet), var(--grid-column-size));
+  gap: 40px var(--grid-column-gap);
+  justify-content: center;
+  transition: border-radius 1s;
+
+  @include on-computer {
+    grid-template-columns: repeat(var(--grid-columns-amount-computer), var(--grid-column-size));
+  }
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: transparent;
+  max-width: var(--card-width);
+  padding-top: 10px;
+  transition: scale 1s;
+  border-radius: 12px;
+
+  &:hover {
+    background-color: #EEEEEE;
+    scale: 1.19;
+  }
+
+  &:hover &__extra {
+    transform: scale(1) translateX(-50%);
+  }
+
+
+  &__photo-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__photo {
+    width: calc(100% - (var(--card-padding-block) * 2));
+    border-radius: 50%;
+    margin-bottom: 8px;
+    transition: 1s;
+  }
+
+  &:hover &__photo {
+    border-radius: 25%;
+  }
+
+  &__rank {
+    position: absolute;
+    top: 50%;
+    right: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    color: var(--rank-color);
+    font-size: 16px;
+    line-height: 18;
+    background-color: #fff;
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+  }
+
+  &__details {
+    //position: relative;
+  }
+
+  &__name {
+    display: block;
+    font-size: 20px;
+    //line-height: 23;
+    margin-bottom: 9px;
+    text-align: center;
+    color: #2F4F4F;
+  }
+
+  &__extra {
+    max-width: 200px;
+    transform: scale(0);
+    left: 50%;
+    position: relative;
+    //transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  &__sport {
+    display: block;
+
+    &:after {
+      content: ', ';
+    }
+  }
+
+  &__pay {
+    display: block;
+
+    &:before{
+      content: '$';
+    }
+
+    &:after {
+      content: 'M';
+    }
+  }
+}
